@@ -186,6 +186,99 @@ mew_list = [0]
 result = counting_pop * 2
 ```
 
+### 코드 실행
+```python
+bord = [
+    [0, 0, 0, 0, 0],
+    [0, 0, 1, 0, 3],
+    [0, 2, 5, 0, 1],
+    [4, 2, 4, 4, 2],
+    [3, 5, 1, 3, 1]
+       ]
+array_bord = np.array(bord)
+moves = [1, 5, 3, 5, 1, 2, 1, 4]
+
+new_list = [0]
+counting_pop = 0
+
+for i in range(len(moves)) : # 열
+    now_col = moves[i] - 1
+    print("== 현재 열의 위치 : {} ===".format(now_col))
+    print("새바구니 : {}".format(new_list))
+    print()
+    for j in range(5) : 
+        if array_bord[:, now_col][j] == 0 :
+            continue
+        else :
+            doll = array_bord[:, now_col][j]
+            print(">> 현재 인형 : {}".format(doll))
+            array_bord[:, now_col][j] = 0
+            if doll == new_list[-1] :
+                counting_pop += 1
+                new_list.pop()
+                print(">> 중복 삭제된 인형 : {}, 삭제횟수 : {}".format(doll, counting_pop))
+                print()
+            else :
+                new_list.append(doll)
+                print(">>중복아닌 인형 : {}".format(doll))
+                print()
+            break
+
+print("새바구니 최종 : {}, 삭제횟수 : {}, 삭제된 인형의 갯수 : {}".format(new_list, counting_pop, counting_pop*2))
+```
+
+- 각 단계별 코드 결과 확인
+```python
+>>>
+
+== 현재 열의 위치 : 0 ===
+새바구니 : [0]
+
+>> 현재 인형 : 4
+>>중복아닌 인형 : 4
+
+== 현재 열의 위치 : 4 ===
+새바구니 : [0, 4]
+
+>> 현재 인형 : 3
+>>중복아닌 인형 : 3
+
+== 현재 열의 위치 : 2 ===
+새바구니 : [0, 4, 3]
+
+>> 현재 인형 : 1
+>>중복아닌 인형 : 1
+
+== 현재 열의 위치 : 4 ===
+새바구니 : [0, 4, 3, 1]
+
+>> 현재 인형 : 1
+>> 중복 삭제된 인형 : 1, 삭제횟수 : 1
+
+== 현재 열의 위치 : 0 ===
+새바구니 : [0, 4, 3]
+
+>> 현재 인형 : 3
+>> 중복 삭제된 인형 : 3, 삭제횟수 : 2
+
+== 현재 열의 위치 : 1 ===
+새바구니 : [0, 4]
+
+>> 현재 인형 : 2
+>>중복아닌 인형 : 2
+
+== 현재 열의 위치 : 0 ===
+새바구니 : [0, 4, 2]
+
+== 현재 열의 위치 : 3 ===
+새바구니 : [0, 4, 2]
+
+>> 현재 인형 : 4
+>>중복아닌 인형 : 4
+
+새바구니 최종 : [0, 4, 2, 4], 삭제횟수 : 2, 삭제된 인형의 갯수 : 4
+```
+
 ### 최종코드
 ```python
 def solution(board, moves) :
@@ -213,3 +306,13 @@ def solution(board, moves) :
     return result
 ```
 
+- 함수 호출
+```python
+board = [[0,0,0,0,0],[0,0,1,0,3],[0,2,5,0,1],[4,2,4,4,2],[3,5,1,3,1]]
+moves = [1,5,3,5,1,2,1,4]
+solution(board, moves)
+
+>>>
+
+4
+```
