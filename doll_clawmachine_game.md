@@ -119,9 +119,9 @@ for i in range(len(moves)) : # 열
 현재 moves : 3, 인형 번호 : 4
 ```
 
-#### 숫자이 인형을 선택한 후 현재 위치의 배열을 0으로 바꿔준다.
-- 현재 위치의 인형이 0이 아니라 숫자이면 새로운 바구니에 담아야 한다.
-- 또한 새로운 바구니로 인형을 옮겼기 때문에 현재 배열에서는 0으로 바꿔줘야한다.
+#### 숫자 인형을 선택한 후 현재 위치의 배열을 0으로 바꿔준다.
+- 현재 위치의 인형이 0이 아니라 숫자이면 새로운 바구니에 담는다.
+- 또한 새로운 바구니로 인형을 옮겼기 때문에 인형뽑기 배열에서는 0으로 바꿔줘야한다.
    - 다음 moves가 같은 위치에 왔을 때 중복으로 선택하지 않기 위해서
 
 ```python
@@ -136,7 +136,7 @@ for i in range(len(moves)) : # 열
             continue
         else :
             doll = array_bord[:, now_col][j]
-	    array_bord[:, now_col][j] = 0
+	    array_bord[:, now_col][j] = 0   # 현재 위치의 값을 0으로 바꿔준다.
 ```
 
 
@@ -161,9 +161,9 @@ for i in range(len(moves)) : # 열
             else :
                 doll = array_bord[:, now_col][j]
                 array_bord[:, now_col][j] = 0
-                if doll == new_list[-1] :
-                    counting_pop += 1
-                    new_list.pop()
+                if doll == new_list[-1] :   # 인형의 번호가 새바구니의 마지막 번호와 같은지 확인
+                    counting_pop += 1       # 인형의 번호가 같으면 중복이므로 counting_pop에 1을 더해준다.
+                    new_list.pop()          # 중복인 인형의 번호를 새바구니에서 삭제한다.
                 else :
                     new_list.append(doll)
                 break
@@ -207,8 +207,9 @@ def solution(board, moves) :
                 else :
                     new_list.append(doll)
                 break
+		
     result = counting_pop * 2
-    print(new_list)
+    
     return result
 ```
 
