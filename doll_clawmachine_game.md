@@ -280,12 +280,7 @@ print("새바구니 최종 : {}, 삭제횟수 : {}, 삭제된 인형의 갯수 :
 ```
 
 # 최종코드
-- 코딩 사이트에 최종코드를 제출하고 테스트를 하면 통과한 사례와 통과하지 못한 사례가 있음
-- 코드의 수정 필요
-   - 이중 반복문의 문제? 
-   - 애초에 새바구니에 담는 방향이 아닌 임시 저장후 그때그때 확인 하는 방식으로 리빌딩?
-   - 길이가 긴 리스트 입력데이터를 좀 더 효율적으로 다룰 수 있는 방법을 알아볼 것.
-   - 
+
 ```python
 def solution(board, moves) :
     array_bord = np.array(board)
@@ -294,7 +289,7 @@ def solution(board, moves) :
 
     for i in range(len(moves)) : # 열
         now_col = moves[i] - 1
-        for j in range(5) :
+        for j in range(len(board) :
             if array_bord[:, now_col][j] == 0 :
                 continue
             else :
@@ -313,6 +308,7 @@ def solution(board, moves) :
 ```
 
 - 함수 호출
+
 ```python
 board = [[0,0,0,0,0],[0,0,1,0,3],[0,2,5,0,1],[4,2,4,4,2],[3,5,1,3,1]]
 moves = [1,5,3,5,1,2,1,4]
